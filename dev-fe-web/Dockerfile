@@ -2,20 +2,23 @@
 FROM node:23-alpine AS build
 WORKDIR /app
 
-COPY package.json yarn.lock ./
-RUN yarn install --frozen-lockfile  
+# Copy và cài đặt dependencies
+COPY package.json package-lock.json ./
+RUN npm ci
 
-COPY . .  
-RUN yarn build  
+# Copy source code và build
+COPY . .
+RUN npm run build
 
 # Runtime stage
 FROM node:23-alpine AS runtime
 WORKDIR /app
 
+# Copy thư mục build và dependencies cần thiết
 COPY --from=build /app/dist ./dist
-COPY package.json yarn.lock ./
+COPY package.json package-lock.json ./
 
-RUN yarn install --omit=dev --frozen-lockfile  
+RUN npm ci --omit=dev
 
 EXPOSE 4173
-CMD ["yarn", "vite", "preview", "--host", "0.0.0.0", "--port", "4173"]
+CMD ["npm", "run", "preview", "--", "--host", "0.0.0.0", "--port", "4173"]
