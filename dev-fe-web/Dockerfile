@@ -8,7 +8,7 @@ RUN npm ci --omit=optional
 
 # Copy source code and build
 COPY . .
-RUN npm run build --force
+RUN vite build --force --noEmitOnError false
 
 # Runtime stage
 FROM node:23-alpine AS runtime
