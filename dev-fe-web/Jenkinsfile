@@ -1,0 +1,69 @@
+pipeline {
+    agent any
+    environment {
+        REPO_URL = 'https://github.com/JiaG293/test-fegit'
+        CREDENTIALS_ID = 'roomx-fe-dev-env'
+        WORKDIR = 'dev-fe-web'
+    }
+
+    stages {
+        stage('Clone Repository') {
+            steps {
+                git branch: 'main', url: REPO_URL
+            }
+        }
+
+        stage('Load ENV File') {
+            steps {
+                script {
+                    withCredentials([file(credentialsId: CREDENTIALS_ID, variable: 'ENV_FILE')]) {
+                        sh '''
+                            set -x
+                            chmod 644 $ENV_FILE
+                            rm -f $WORKDIR/.env || true
+                            cp $ENV_FILE $WORKDIR/.env || true
+                            ls -la $WORKDIR/
+                        '''
+                    }
+                }
+            }
+        }
+
+        stage('Build Docker Image') {
+            steps {
+                script {
+                    sh '''
+                        cd $WORKDIR
+                        docker compose down roomx-fe || true
+                        docker images --format "{{.Repository}}:{{.Tag}}" | grep "roomx-fe" | xargs -r docker rmi -f || true
+                        docker compose build roomx-fe
+                    '''
+                }
+            }
+        }
+
+        stage('Start/Restart Container/Update env') {
+            steps {
+                script {
+                    withCredentials([file(credentialsId: CREDENTIALS_ID, variable: 'ENV_FILE')]) {
+                        sh '''
+                            chmod 644 $ENV_FILE
+                            rm -f $WORKDIR/.env || true
+                            cp $ENV_FILE $WORKDIR/.env || true
+
+                            cd $WORKDIR
+                            docker compose up -d --force-recreate roomx-fe || true
+                            docker compose up -d roomx-fe
+                        '''
+                    }
+                }
+            }
+        }
+    }
+
+    post {
+        always {
+            cleanWs()
+        }
+    }
+}
