@@ -20,9 +20,9 @@ pipeline {
                         sh '''
                             set -x
                             chmod 644 $ENV_FILE
-                            rm -f dev-fe-web/.env || true
-                            cp $ENV_FILE dev-fe-web/.env || true
-                            ls -la dev-fe-web/
+                            rm -f $WORKDIR/.env || true
+                            cp $ENV_FILE $WORKDIR/.env || true
+                            ls -la $WORKDIR/
                         '''
                     }
                 }
