@@ -33,12 +33,18 @@ pipeline {
             steps {
                 script {
                     sh '''
-                        cd $WORKDIR
-                                        if [ "$(docker ps -a --format '{{.Names}}' | grep '^roomx-fe$')" ]; then
-                                            docker compose down roomx-fe || true
-                                        fi
-                                        docker images --format "{{.Repository}}:{{.Tag}}" | grep "roomx-fe" | xargs -r docker rmi -f || true
-                                        docker compose build roomx-fe
+                       cd $WORKDIR
+
+
+                                       if docker ps -a --format '{{.Names}}' | grep -q '^roomx-fe$'; then
+                                           docker compose down roomx-fe || true
+                                       fi
+
+
+                                       docker images --format "{{.Repository}}:{{.Tag}}" | grep "roomx-fe" | xargs -r docker rmi -f || true
+
+
+                                       docker compose build roomx-fe
                     '''
                 }
             }
