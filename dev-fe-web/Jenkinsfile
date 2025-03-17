@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-        REPO_URL = 'https://github.com/JiaG293/test-fegit'
+        REPO_URL = 'https://github.com/JiaG293/test-fe.git'
         CREDENTIALS_ID = 'roomx-fe-dev-env'
         WORKDIR = 'dev-fe-web'
     }

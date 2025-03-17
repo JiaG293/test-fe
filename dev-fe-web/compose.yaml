@@ -5,7 +5,7 @@ networks:
 
 services:
   roomx-fe:
-    image: roomx-frontend:latest
+    image: roomx-fe:latest
     build:
       context: .
       dockerfile: Dockerfile
