@@ -4,6 +4,7 @@ pipeline {
         REPO_URL = 'https://github.com/JiaG293/test-fe.git'
         CREDENTIALS_ID = 'roomx-fe-dev-env'
         WORKDIR = 'dev-fe-web'
+        IMAGE_TAG = "latest"
     }
 
     stages {
@@ -33,37 +34,22 @@ pipeline {
             steps {
                 script {
                     sh '''
-                       cd $WORKDIR
-
-
-                                       if docker ps -a --format '{{.Names}}' | grep -q '^roomx-fe$'; then
-                                           docker compose down roomx-fe || true
-                                       fi
-
-
-                                       docker images --format "{{.Repository}}:{{.Tag}}" | grep "roomx-fe" | xargs -r docker rmi -f || true
-
-
-                                       docker compose build roomx-fe
+                        cd $WORKDIR
+                        docker compose down roomx-fe || true
+                        docker images --format "{{.Repository}}:{{.Tag}}" | grep "roomx-fe" | xargs -r docker rmi -f || true
+                        docker compose build --tag roomx-fe:${IMAGE_TAG} roomx-fe
                     '''
                 }
             }
         }
 
-        stage('Start/Restart Container/Update env') {
+        stage('Start/Restart Container') {
             steps {
                 script {
-                    withCredentials([file(credentialsId: CREDENTIALS_ID, variable: 'ENV_FILE')]) {
-                        sh '''
-                            chmod 644 $ENV_FILE
-                            rm -f $WORKDIR/.env || true
-                            cp $ENV_FILE $WORKDIR/.env || true
-
-                            cd $WORKDIR
-                            docker compose up -d --force-recreate roomx-fe || true
-                            docker compose up -d roomx-fe
-                        '''
-                    }
+                    sh '''
+                        cd $WORKDIR
+                        docker compose up -d --force-recreate roomx-fe || true
+                    '''
                 }
             }
         }
