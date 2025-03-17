@@ -19,8 +19,10 @@ pipeline {
                     withCredentials([file(credentialsId: CREDENTIALS_ID, variable: 'ENV_FILE')]) {
                         sh '''
                             set -x
-
-                            ls -la $WORKDIR/
+                            chmod 644 $ENV_FILE
+                            rm -f "${WORKDIR}/"".env || true
+                            cp $ENV_FILE "${WORKDIR}/".env || true
+                            ls -la "${WORKDIR}/"
                         '''
                     }
                 }
@@ -31,7 +33,7 @@ pipeline {
             steps {
                 script {
                     sh '''
-                        cd $WORKDIR
+                        cd "${WORKDIR}"
                         docker compose down roomx-fe || true
                         docker images --format "{{.Repository}}:{{.Tag}}" | grep "roomx-fe" | xargs -r docker rmi -f || true
                         docker compose build roomx-fe
@@ -46,8 +48,8 @@ pipeline {
                     withCredentials([file(credentialsId: CREDENTIALS_ID, variable: 'ENV_FILE')]) {
                         sh '''
                             chmod 644 $ENV_FILE
-                            rm -f $WORKDIR/.env || true
-                            cp $ENV_FILE $WORKDIR/.env || true
+                            rm -f "${WORKDIR}/".env || true
+                            cp $ENV_FILE "${WORKDIR}/".env || true
 
                             cd $WORKDIR
                             docker compose up -d --force-recreate roomx-fe || true
