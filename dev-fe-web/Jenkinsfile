@@ -2,13 +2,12 @@ pipeline {
     agent any
     environment {
         REPO_URL = 'https://github.com/JiaG293/test-fe.git'
-        CREDENTIALS_ID = 'roomx-fe-dev-env'
         WORKDIR = 'dev-fe-web'
-        IMAGE_TAG = "latest"
+        IMAGE_TAG = "latest"  // Or use ${BUILD_NUMBER} or git commit hash
     }
 
     stages {
-        stage('Clone Repository') {
+        stage('Checkout') {
             steps {
                 git branch: 'main', url: REPO_URL
             }
@@ -17,7 +16,7 @@ pipeline {
         stage('Load ENV File') {
             steps {
                 script {
-                    withCredentials([file(credentialsId: CREDENTIALS_ID, variable: 'ENV_FILE')]) {
+                    withCredentials([file(credentialsId: 'roomx-fe-dev-env', variable: 'ENV_FILE')]) {
                         sh '''
                             set -x
                             chmod 644 $ENV_FILE
@@ -37,7 +36,7 @@ pipeline {
                         cd $WORKDIR
                         docker compose down roomx-fe || true
                         docker images --format "{{.Repository}}:{{.Tag}}" | grep "roomx-fe" | xargs -r docker rmi -f || true
-                        docker compose build --tag roomx-fe:${IMAGE_TAG} roomx-fe
+                        docker compose build roomx-fe
                     '''
                 }
             }
@@ -48,7 +47,7 @@ pipeline {
                 script {
                     sh '''
                         cd $WORKDIR
-                        docker compose up -d --force-recreate roomx-fe || true
+                        docker compose up -d --force-recreate roomx-fe
                     '''
                 }
             }
