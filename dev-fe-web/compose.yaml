@@ -12,10 +12,6 @@ services:
       - "4173:4173"
     env_file:
       - .env
-    volumes:
-      - .:/app
-      - /app/node_modules
-    command: ["bun", "run", "preview", "--host", "0.0.0.0", "--port", "4173"]
     restart: always
     networks:
       - roomx_network
