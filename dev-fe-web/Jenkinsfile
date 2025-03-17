@@ -32,7 +32,6 @@ pipeline {
                 script {
                     sh '''
                         cd $WORKDIR
-                        docker compose build roomx-fe
                         docker image prune -af || true
                         docker compose up -d --force-recreate roomx-fe
                     '''
