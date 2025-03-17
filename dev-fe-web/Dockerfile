@@ -1,19 +1,18 @@
-FROM oven/bun:latest
-
-# Create app directory
+FROM oven/bun:latest AS build
 WORKDIR /app
 
-# Create user
-RUN adduser -D node
-USER node
+COPY package.json bun.lockb ./
+RUN bun install --frozen-lockfile && bun cache clean
 
-# Install app dependencies
-COPY package*.json ./
-RUN bun install
-
-# Copy source code
 COPY . .
+RUN bun run build || true
+
+FROM oven/bun:latest AS runtime
+WORKDIR /app
+
+COPY --from=build /app/dist ./dist
+COPY package.json bun.lockb ./
+RUN bun install --omit=dev && bun cache clean
 
 EXPOSE 4173
-
-CMD ["bun", "run", "preview", "--host", "0.0.0.0", "--port", "4173"]
+CMD ["sh", "-c", "export $(cat .env | xargs) && bun run vite preview --host 0.0.0.0 --port $PORT"]
