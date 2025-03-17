@@ -34,7 +34,9 @@ pipeline {
                 script {
                     sh '''
                         cd $WORKDIR
+                        if docker ps -a | grep -q "roomx-fe"; then
                         docker compose down roomx-fe || true
+                        fi
                         docker images --format "{{.Repository}}:{{.Tag}}" | grep "roomx-fe" | xargs -r docker rmi -f || true
                         docker compose build roomx-fe
                     '''
