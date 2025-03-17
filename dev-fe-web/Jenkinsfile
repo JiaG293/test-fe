@@ -7,17 +7,22 @@ pipeline {
     }
 
     stages {
-        stage('Checkout') {
+        stage('Clone Repository') {
             steps {
-                checkout scm
+                git branch: 'main', url: REPO_URL
             }
         }
+
         stage('Load ENV File') {
             steps {
                 script {
                     withCredentials([file(credentialsId: CREDENTIALS_ID, variable: 'ENV_FILE')]) {
                         sh '''
-                            ls
+                            set -x
+                            chmod 644 $ENV_FILE
+                            rm -f $WORKDIR/.env || true
+                            cp $ENV_FILE $WORKDIR/.env || true
+                            ls -la $WORKDIR/
                         '''
                     }
                 }
