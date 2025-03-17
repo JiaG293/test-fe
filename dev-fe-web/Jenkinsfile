@@ -7,11 +7,11 @@ pipeline {
     }
 
     stages {
-        stage('Clone Repository') {
-            steps {
-                git branch: 'main', url: REPO_URL
-            }
-        }
+//         stage('Clone Repository') {
+//             steps {
+//                 git branch: 'main', url: REPO_URL
+//             }
+//         }
 
         stage('Load ENV File') {
             steps {
