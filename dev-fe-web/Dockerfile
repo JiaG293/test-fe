@@ -1,5 +1,5 @@
 # Build stage
-FROM node:18-alpine AS build
+FROM node:23-alpine AS build
 WORKDIR /app
 
 COPY package.json yarn.lock ./
@@ -9,7 +9,7 @@ COPY . .
 RUN yarn build  
 
 # Runtime stage
-FROM node:18-alpine AS runtime
+FROM node:23-alpine AS runtime
 WORKDIR /app
 
 COPY --from=build /app/dist ./dist
