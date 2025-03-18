@@ -12,6 +12,12 @@ export default defineConfig({
     cors: true,
     headers: {
       "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Credentials": "true",
+    },
+    hmr: {
+      protocol: "wss",
+      host: "devroomx.jiag.id.vn",
+      clientPort: 443,
     },
   },
   resolve: {
