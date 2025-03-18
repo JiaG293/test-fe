@@ -202,44 +202,42 @@ const events = [
 ];
 
 const Meeting: React.FC = () => {
+
   const [viewMode, setViewMode] = useState<"dayGridMonth" | "listWeek">(
     "dayGridMonth"
   );
-
+  
   return (
-    <CMSLayout>
+    <CMSLayout title="Quản lý đặt phòng">
       <div style={{ flex: 0.9 }}>
-        <ToggleGroup
-          type="single"
-          value={viewMode}
-          onValueChange={(value) =>
-            value && setViewMode(value as "dayGridMonth" | "listWeek")
-          }
-        >
-          <ToggleGroupItem className="bg-transparent" value="dayGridMonth">
-            Tháng
-          </ToggleGroupItem>
-          <ToggleGroupItem className="bg-transparent" value="listWeek">
-            Tuần
-          </ToggleGroupItem>
-        </ToggleGroup>
-        <FullCalendar
+ 
+      <FullCalendar
           locale="vi"
           plugins={[dayGridPlugin, listPlugin, interactionPlugin]}
           initialView={viewMode}
           eventTextColor="white" // Màu chữ trắng
-          eventBackgroundColor="#ff5733" // Màu nền đỏ cam
+          eventBackgroundColor="#E4D1B9" // Màu nền sáng như phong cách Ghibli
+          eventBorderColor="#4F6D7A" // Màu viền đậm và nhẹ nhàng
           key={viewMode}
           events={events}
           eventClick={(info) => {
-            alert(`Sự kiện: ${info.event.title}`);
+            const event = info.event;
+            alert(`Sự kiện: ${event.title}\nPhòng: ${event.extendedProps.room}`);
           }}
           dateClick={(info) => {
             alert(`Ngày chọn: ${info.dateStr}`);
           }}
           height="100%"
           buttonText={{
-            today: "Hôm nay" 
+            today: "Hôm nay",
+            month: "Tháng",
+            week: "Tuần",
+            day: "Ngày",
+          }}
+          headerToolbar={{
+            left: "prev,next today", // Các nút điều hướng
+            center: "title", // Tiêu đề của tháng
+            right: "dayGridMonth,dayGridWeek,dayGridDay", // Các chế độ xem (tháng, tuần, ngày)
           }}
         />
       </div>

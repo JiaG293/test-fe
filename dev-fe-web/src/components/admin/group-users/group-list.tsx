@@ -92,10 +92,10 @@ const GroupUserList: React.FC = () => {
         </div>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-          {/*{filteredGroups.map((group) => (*/}
-          {/*  // <GroupUserItem key={group.groupId} group={group} />*/}
-          {/*  <></>*/}
-          {/*))}*/}
+          {/*{filteredGroups.map((group) => (
+            // <GroupUserItem key={group.groupId} group={group} />
+            <></>
+          ))}*/}
         </div>
       )}
     </div>

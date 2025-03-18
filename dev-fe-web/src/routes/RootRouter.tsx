@@ -15,6 +15,7 @@ import UserDetail from "@/pages/Admin/UserDetail";
 import BranchUpdate from "@/pages/Admin/Branch/BranchUpdate";
 import Service from "@/pages/Admin/Service/Service";
 import Equipment from "@/pages/Admin/Equipment/Equipment";
+import Room from "@/pages/Admin/Room/Room";
 
 export const RootRouter = createBrowserRouter([
   {
@@ -63,6 +64,10 @@ export const RootRouter = createBrowserRouter([
       {
         path: "/admin/equipments",
         element: <Equipment />,
+      },
+      {
+        path: "/admin/rooms",
+        element: <Room/>
       }
     ],
   },
