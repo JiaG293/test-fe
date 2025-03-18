@@ -23,7 +23,7 @@ WORKDIR /app
 COPY --from=build /app/dist ./dist
 COPY package.json package-lock.json ./
 
-RUN npm ci --only=production
+RUN npm ci
 
 
 EXPOSE 4173
