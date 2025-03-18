@@ -9,6 +9,10 @@ export default defineConfig({
     port: 5173,
     strictPort: true,
     allowedHosts: ["devroomx.jiag.id.vn", "roomx.jiag.id.vn"],
+    cors: true,
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+    },
   },
   resolve: {
     alias: {
