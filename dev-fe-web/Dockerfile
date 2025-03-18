@@ -8,7 +8,7 @@ RUN npm ci --omit=optional
 
 # Copy source code and build
 COPY . .
-RUN npm run build --force --noEmitOnError false
+RUN npm run build
 
 # Runtime stage
 FROM node:23 AS runtime
