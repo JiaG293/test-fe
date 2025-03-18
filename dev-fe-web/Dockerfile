@@ -11,7 +11,7 @@ RUN npm ci --omit=optional
 
 
 COPY . .
-
+RUN npm install
 # Build project
 RUN npm run build
 
