@@ -10,8 +10,12 @@ services:
       dockerfile: Dockerfile
     ports:
       - "4173:4173"
+    volumes:
+      - .:/app
+    working_dir: /app
     env_file:
       - .env
+    command: npm run dev
     restart: always
     networks:
       - roomx_network
