@@ -1,5 +1,5 @@
 # Build stage
-FROM node:23-alpine AS build
+FROM node:23 AS build
 WORKDIR /app
 
 # Copy package files and install dependencies
@@ -11,7 +11,7 @@ COPY . .
 RUN npm run build --force --noEmitOnError false
 
 # Runtime stage
-FROM node:23-alpine AS runtime
+FROM node:23 AS runtime
 WORKDIR /app
 
 # Copy built files from build stage
