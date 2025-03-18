@@ -88,14 +88,14 @@ const GroupUserList: React.FC = () => {
 
       {viewMode === "table" ? (
         <div className="overflow-auto max-h-[75vh]">
-          <DataTable columns={columns} data={filteredGroups} />
+          {/*<DataTable columns={columns} data={filteredGroups} />*/}
         </div>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-          {filteredGroups.map((group) => (
-            // <GroupUserItem key={group.groupId} group={group} />
-            <></>
-          ))}
+          {/*{filteredGroups.map((group) => (*/}
+          {/*  // <GroupUserItem key={group.groupId} group={group} />*/}
+          {/*  <></>*/}
+          {/*))}*/}
         </div>
       )}
     </div>

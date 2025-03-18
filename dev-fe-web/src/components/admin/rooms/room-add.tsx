@@ -49,13 +49,13 @@ const RoomAddModal: React.FC<RoomAddModalProps> = ({ onAddSuccess }) => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
 
   const roomService = new RoomService();
-  const branchService = new BranchService();
+  // const branchService = new BranchService();
 
   useEffect(() => {
     const fetchBranches = async () => {
       try {
-        const branchList = await branchService.getAllBranches();
-        setBranches(branchList);
+        // const branchList = await branchService.getAllBranches();
+        // setBranches(branchList);
       } catch (error) {
         console.error("Lỗi khi lấy danh sách chi nhánh:", error);
         toast.error("Không thể tải danh sách chi nhánh.");
