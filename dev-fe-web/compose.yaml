@@ -5,17 +5,17 @@ networks:
 
 services:
   roomx-fe:
-    build:
-      context: .
-      dockerfile: Dockerfile
+    image: node:lts
+    container_name: roomx-fe
     ports:
-      - "4173:4173"
+      - "5173:5173"
     volumes:
       - .:/app
+      - /app/node_modules
     working_dir: /app
     env_file:
       - .env
-    command: npm run dev
+    command: ["npm", "run", "dev", "--", "--host", "0.0.0.0"]
     restart: always
     networks:
       - roomx_network
