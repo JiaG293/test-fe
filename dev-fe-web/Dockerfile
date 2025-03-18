@@ -7,7 +7,7 @@ ENV NODE_ENV=production
 
 
 COPY package.json package-lock.json ./
-RUN npm ci --omit=optional
+#RUN npm ci --omit=optional
 
 
 COPY . .
@@ -23,7 +23,7 @@ WORKDIR /app
 COPY --from=build /app/dist ./dist
 COPY package.json package-lock.json ./
 
-RUN npm ci --omit=dev
+#RUN npm ci --omit=dev
 
 
 EXPOSE 4173
