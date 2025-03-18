@@ -63,13 +63,13 @@ const BranchUpdate: React.FC = () => {
 
   if (loading)
     return (
-      <CMSLayout title="Cập nhật chi nhánh">
+      <CMSLayout>
         <p className="text-center">Đang tải dữ liệu...</p>
       </CMSLayout>
     );
 
   return (
-    <CMSLayout title="Cập nhật chi nhánh">
+    <CMSLayout>
       <div className="flex justify-center items-center flex-1">
         <Card className="w-full max-w-2xl">
           <CardHeader>

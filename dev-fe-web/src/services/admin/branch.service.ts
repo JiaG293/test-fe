@@ -4,29 +4,6 @@ import Cookies from "js-cookie";
 const API_BASE_URL = import.meta.env.VITE_BACKEND_HOST;
 
 export class BranchService {
-
-  async getAllBranches() {
-    const token = Cookies.get("token");
-
-    if (!token) {
-      throw new Error("No authentication token found in cookies");
-    } 
-
-    try { 
-      const response = await axios.get(`${API_BASE_URL}/branchs/all`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "application/json",
-          "X-tenantId": `${import.meta.env.VITE_KEYCLOAK_REALM}`,
-        },
-      });
-      return response.data.result;  
-    } catch (error) {
-      console.error("Error fetching branches:", error);
-      throw error;
-    }
-  }
-
   // Lấy danh sách chi nhánh với phân trang
   async getListBranches(size: number) {
     const token = Cookies.get("token");

@@ -4,7 +4,7 @@ import React from 'react'
 
 const GroupUser: React.FC = () => {
   return (
-    <CMSLayout title='Danh sách nhóm người dùng'>
+    <CMSLayout>
       <GroupUserList></GroupUserList>
     </CMSLayout>
   )

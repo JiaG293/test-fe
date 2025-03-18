@@ -3,7 +3,7 @@ import React from 'react'
 
 const MeetingApproval: React.FC = () => {
   return (
-    <CMSLayout title='Phê duyệt cuộc họp'>
+    <CMSLayout>
       <></>
     </CMSLayout>
   )

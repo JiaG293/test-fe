@@ -4,7 +4,7 @@ import React from 'react'
 
 const Service: React.FC = () => {
   return (
-    <CMSLayout title='Danh sách dịch vụ'>
+    <CMSLayout>
       <ServiceList/>
     </CMSLayout>
   )
