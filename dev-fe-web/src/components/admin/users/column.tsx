@@ -5,12 +5,11 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuLabel,
-  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { User } from "@/types/UserType";
 import { ColumnDef } from "@tanstack/react-table";
-import { MoreVertical, Edit, Eye, XCircle, MoreHorizontal } from "lucide-react"; // Import icon từ lucide-react
+import {MoreHorizontal } from "lucide-react"; // Import icon từ lucide-react
 import { Link } from "react-router-dom";
 
 export const columns: ColumnDef<User>[] = [

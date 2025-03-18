@@ -8,8 +8,6 @@ import {
   Users,
   MapPin,
   Calendar,
-  Settings,
-  File,
   CheckCircle,
   UserPlus,
   Monitor,

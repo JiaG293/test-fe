@@ -32,7 +32,7 @@ const ServiceList: React.FC = () => {
   // State phân trang
   const [pageIndex, setPageIndex] = useState(0);
   const [totalPages, setTotalPages] = useState(1);
-
+console.log(loading)
   // Fetch danh sách dịch vụ
   const fetchServices = async () => {
     setLoading(true);
@@ -57,9 +57,9 @@ const ServiceList: React.FC = () => {
   };
 
   // Khi chỉnh sửa dịch vụ thành công
-  const onEditSuccess = async () => {
-    await fetchServices();
-  };
+  // const onEditSuccess = async () => {
+  //   await fetchServices();
+  // };
 
   useEffect(() => {
     fetchServices();

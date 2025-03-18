@@ -4,7 +4,6 @@ import React, { useState } from "react";
 import FullCalendar from "@fullcalendar/react"; // Import FullCalendar
 import dayGridPlugin from "@fullcalendar/daygrid"; // Plugin cho chế độ xem tháng
 import interactionPlugin from "@fullcalendar/interaction"; // Plugin cho tương tác (chọn ngày, sự kiện)
-import { ToggleGroup, ToggleGroupItem } from "@radix-ui/react-toggle-group";
 import listPlugin from "@fullcalendar/list";
 import "@/styles/calendar-style.css";
 
@@ -207,6 +206,8 @@ const Meeting: React.FC = () => {
     "dayGridMonth"
   );
   
+console.log(setViewMode)
+
   return (
     <CMSLayout title="Quản lý đặt phòng">
       <div style={{ flex: 0.9 }}>

@@ -3,7 +3,6 @@ import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid"; // Để hiển thị lịch theo dạng Grid
 import interactionPlugin from "@fullcalendar/interaction"; // Để có thể tương tác với sự kiện
 import PortalLayout from "@/layouts/portal-layout"; // Import layout của bạn
-import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import listPlugin from "@fullcalendar/list";
 
 const Home: React.FC = () => {
@@ -23,9 +22,13 @@ const Home: React.FC = () => {
     },
   ]);
 
+  console.log(setEvents)
+
   const [viewMode, setViewMode] = useState<"dayGridMonth" | "listWeek">(
     "dayGridMonth"
   );
+
+  console.log(setViewMode)
 
   return (
     <PortalLayout>

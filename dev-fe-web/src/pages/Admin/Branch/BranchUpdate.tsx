@@ -13,7 +13,7 @@ const BranchUpdate: React.FC = () => {
   const { branchId } = useParams(); // Lấy id từ URL
   const [branch, setBranch] = useState<any | null>(null);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  //const [error, setError] = useState<string | null>(null);
 
   // State để quản lý form
   const [id, setId] = useState("");

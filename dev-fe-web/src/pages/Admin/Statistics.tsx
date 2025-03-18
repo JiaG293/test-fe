@@ -2,8 +2,8 @@ import React from "react";
 import CMSLayout from "@/layouts/cms-layout";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, LineChart, Line } from "recharts";
-import { TrendingUp, TrendingDown, Users, Calendar } from "lucide-react";
+import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer } from "recharts";
+import { TrendingUp, Users, Calendar } from "lucide-react";
 
 const bookingData = [
   { name: "Jan", bookings: 120 },

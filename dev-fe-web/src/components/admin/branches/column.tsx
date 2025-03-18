@@ -1,11 +1,10 @@
 import { ColumnDef } from "@tanstack/react-table";
-import { Edit, Eye, MoreHorizontal, XCircle } from "lucide-react";
+import {  MoreHorizontal } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuLabel,
-  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";

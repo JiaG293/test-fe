@@ -154,7 +154,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     }
   };
 
-  const resetPassword = async (email: string): Promise<void> => {
+  const resetPassword = async (): Promise<void> => {
     ///
   };
 
