@@ -1,5 +1,5 @@
 # Build stage
-FROM node:23 AS build
+FROM node:lts AS build
 WORKDIR /app
 
 # Copy package files and install dependencies
@@ -11,7 +11,7 @@ COPY . .
 RUN npm run build
 
 # Runtime stage
-FROM node:23 AS runtime
+FROM node:lts AS runtime
 WORKDIR /app
 
 # Copy built files from build stage
